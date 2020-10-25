@@ -1,6 +1,5 @@
 #![recursion_limit="256"]
 
-use js_sys::Date;
 use yew::services::ConsoleService;
 use yew::{html, Component, ComponentLink, Html, ShouldRender};
 

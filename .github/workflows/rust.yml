@@ -1,0 +1,32 @@
+name: Rust
+
+on:
+  push:
+    branches: [ main ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    outputs:
+      size: ${{ steps.build.outputs.size }}
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: cargo test --all-features --verbose
+    - run: cargo doc --verbose --all-features
+
+  checks:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions-rs/clippy-check@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        args: --all-features -- -D warnings
