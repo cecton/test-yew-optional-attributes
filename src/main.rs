@@ -41,9 +41,11 @@ impl Component for Model {
     }
 
     fn view(&self) -> Html {
+        let none: Option<String> = None;
+
         html! {
             <div>
-                <nav class="menu" style?=None>
+                <nav class="menu" style?=none>
                     <button onclick=self.link.callback(|_| Msg::Increment)>
                         { "Increment" }
                     </button>
